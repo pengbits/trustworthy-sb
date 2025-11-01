@@ -10,8 +10,8 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, color, description }) =
   return (
     <div className="flex flex-col gap-2">
       <div
-        className="w-full h-24 rounded-lg border border-gray-200 shadow-sm"
-        style={{ backgroundColor: color, outline: '1px solid purple' }}
+        className="w-full h-24  border border-gray-200 shadow-sm"
+        style={{ backgroundColor: color }}
       >&nbsp;</div>
       <div>
         <div className="font-semibold text-sm text-gray-900">{name}</div>
@@ -31,7 +31,7 @@ interface ColorGroupProps {
 
 const ColorGroup: React.FC<ColorGroupProps> = ({ title, colors }) => {
   return (
-    <div className="pb-4" style={{ border: '1px solid green' }}>
+    <div className="pb-4">
       <h3 className="text-2xl font-semibold mb-4 text-gray-900">{title}</h3>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {Object.entries(colors).map(([name, value]) => {
@@ -68,8 +68,6 @@ export interface ColorPaletteProps {
 
 export const ColorPalette: React.FC<ColorPaletteProps> = ({
   accentColors,
-  primaryColors,
-  secondaryColors,
   textColors,
   backgroundColors,
 }) => {

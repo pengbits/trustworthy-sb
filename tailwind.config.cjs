@@ -29,25 +29,13 @@ module.exports = {
           paragraph1: '#394508',
           paragraph2: '#5D5D5D',
           subhead: '#CBCBCB',
-          overlay: '#D9D9D9',
-          dark: '#000000',
-          light: '#6B7280',  // e.g., Body text color
-          muted: '#9CA3AF', // e.g., Muted/secondary text
         },
         
-        // Background colors
         background: {
-          // TODO: Extract from frame/frame background → Right sidebar → Fill
-          DEFAULT: '#F9FAFB', // e.g., Main background
-          light: '#FFFFFF',   // e.g., Card/component background
-          dark: '#111827',   // e.g., Dark background (if used)
-        },
-        
-        // Status colors (if used)
-        // success: '#10B981',
-        // error: '#EF4444',
-        // warning: '#F59E0B',
-        // info: '#3B82F6',
+          100: '#394508',   
+          200: '#FFFFFF',    
+          300: '#EDEDED'
+        }
       },
 
       // ========================================

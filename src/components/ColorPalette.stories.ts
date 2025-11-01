@@ -20,21 +20,21 @@ export const Default: Story = {
       100: '#D2FD9C',
       200: '#77912A',
       300: '#619111',
-
+      400: '#5C4F3A'
     },
     secondaryColors: {
       secondary: '#FF6B6B', // TODO: Replace with your secondary color from Figma
     },
     textColors: {
       heading: '#1F2937',   
-      paragraph1: '#394508',
+      paragraph1: '#000000',
       paragraph2: '#5D5D5D',
       subhead: '#CBCBCB',
     },
     backgroundColors: {
       100: '#394508',   
       200: '#FFFFFF',    
-      300: 'EDEDED'
+      300: '#EDEDED'
     },
   },
 };
