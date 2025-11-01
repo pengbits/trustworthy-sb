@@ -56,17 +56,17 @@ export const Typography: React.FC<TypographyProps> = ({
           <TypeSample
             name="text-h1"
             className="text-h1 text-text-heading"
-            description="2.625rem (42px) / 1.2 line height / 600 weight"
+            description="2.625rem (42px) / 1.06 line height / 400 weight"
           />
           <TypeSample
             name="text-h2"
             className="text-h2 text-text-heading"
-            description="2.000rem (32px) / 1.3 line height / 600 weight"
+            description="2.000rem (32px) / 1.09 line height / 400 weight"
           />
           <TypeSample
             name="text-h3"
             className="text-h3 text-text-heading"
-            description="1.250rem (20px) / 1.4 line height / 600 weight"
+            description="1.250rem (20px) / 1.09 line height / 400 weight"
           />
         </section>
       )}
@@ -77,17 +77,17 @@ export const Typography: React.FC<TypographyProps> = ({
           <TypeSample
             name="text-body"
             className="text-body text-text-paragraph1"
-            description="0.875rem (14px) / 1.5 line height / 400 weight"
+            description="0.875rem (14px) / 1.06 line height / 400 weight"
           />
           <TypeSample
             name="text-body-sm"
             className="text-body-sm text-text-paragraph2"
-            description="0.750rem (12px) / 1.5 line height / 400 weight"
+            description="0.750rem (12px) / 1.06 line height / 400 weight"
           />
           <TypeSample
             name="text-body-xs"
             className="text-body-xs text-text-paragraph2"
-            description="0.625rem (10px) / 1.5 line height / 400 weight"
+            description="0.625rem (10px) / 1.06 line height / 400 weight"
           />
         </section>
       )}

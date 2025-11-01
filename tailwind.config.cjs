@@ -51,14 +51,14 @@ module.exports = {
         // Headings
         'display': ['4rem', { lineHeight: '1.1', fontWeight: '700' }],  // e.g., Largest heading (H1)
       
-        'h1': ['2.625rem', { lineHeight: '1.2', fontWeight: '600' }],   // e.g., H1 (42px)
-        'h2': ['2.000rem', { lineHeight: '1.3', fontWeight: '600' }],   // e.g., H2 (32px)
-        'h3': ['1.250rem', { lineHeight: '1.4', fontWeight: '600' }],   // e.g., H3 (20px)
+        'h1': ['2.625rem', { lineHeight: '1.06', fontWeight: '400' }],   // e.g., H1 (42px)
+        'h2': ['2.000rem', { lineHeight: '1.09', fontWeight: '400' }],   // e.g., H2 (32px)
+        'h3': ['1.250rem', { lineHeight: '1.09', fontWeight: '400' }],   // e.g., H3 (20px)
         
         // Body text
-        'body':     ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Body (14px)
-        'body-sm':  ['0.750rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Small body (12px)
-        'body-xs':  ['0.625rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Extra small body (10px)
+        'body':     ['0.875rem', { lineHeight: '1.06', fontWeight: '400' }], // e.g., Body (14px)
+        'body-sm':  ['0.750rem', { lineHeight: '1.06', fontWeight: '400' }], // e.g., Small body (12px)
+        'body-xs':  ['0.625rem', { lineHeight: '1.06', fontWeight: '400' }], // e.g., Extra small body (10px)
        
         // UI elements
         'button': ['0.875rem', { lineHeight: '1.5', fontWeight: '600' }], // e.g., Button text (14px)

@@ -21,7 +21,7 @@ Build a minimal proof-of-concept marketing landing page demonstrating Storybook 
 - [x] Install Tailwind: `npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p`
 - [x] Configure Tailwind (`tailwind.config.js`) and add to `index.css`
 - [x] Install Storybook: `npx storybook@latest init --yes`
-- [] Configure Storybook to use Tailwind in `.storybook/preview.ts`
+- [x] Configure Storybook to use Tailwind in `.storybook/preview.ts`
 
 **Dependencies Needed:**
 ```
@@ -39,7 +39,7 @@ tailwindcss, postcss, autoprefixer
 ### 2.1 Quick Figma Review
 - [ ] Review Figma design: https://www.figma.com/site/gsDtHk8kXrq8QOmTFDluFZ/Trustworthy-App-Download--Community-?node-id=0-1&p=f&t=hG5QX6MIcH6bECFJ-0
 - [ ] Identify **3-5 essential components** only (e.g., Button, Card, Header, Hero, Footer)
-- [ ] Note Tailwind color classes needed (extend `tailwind.config.js` if needed)
+- [x] Note Tailwind color classes needed (extend `tailwind.config.js` if needed)
 - [ ] Identify page sections
 
 **MVP Component List** (adjust based on design):
