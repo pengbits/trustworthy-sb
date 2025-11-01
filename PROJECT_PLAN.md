@@ -37,8 +37,8 @@ tailwindcss, postcss, autoprefixer
 ## Design Review & Component Planning (15 minutes)
 
 ### 2.1 Quick Figma Review
-- [ ] Review Figma design: https://www.figma.com/site/gsDtHk8kXrq8QOmTFDluFZ/Trustworthy-App-Download--Community-?node-id=0-1&p=f&t=hG5QX6MIcH6bECFJ-0
-- [ ] Identify **3-5 essential components** only (e.g., Button, Card, Header, Hero, Footer)
+- [x] Review Figma design: https://www.figma.com/site/gsDtHk8kXrq8QOmTFDluFZ/Trustworthy-App-Download--Community-?node-id=0-1&p=f&t=hG5QX6MIcH6bECFJ-0
+- [x] Identify **3-5 essential components** only (e.g., Button, Card, Header, Hero, Footer)
 - [x] Note Tailwind color classes needed (extend `tailwind.config.js` if needed)
 - [ ] Identify page sections
 
