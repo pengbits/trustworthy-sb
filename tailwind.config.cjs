@@ -43,29 +43,26 @@ module.exports = {
       // Extract from Figma: Right sidebar → Text section
       // ========================================
       fontFamily: {
-        // TODO: Extract font family names from text elements
-        sans: ['Inter', 'system-ui', 'sans-serif'], // e.g., Body font
-        display: ['Poppins', 'sans-serif'], // e.g., Heading font (if different)
+        sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'], // e.g., Body font
         mono: ['Monaco', 'Consolas', 'monospace'], // Optional: for code
       },
       
       fontSize: {
-        // TODO: Extract font sizes from heading and body text
         // Headings
-        'display': ['4rem', { lineHeight: '1.1', fontWeight: '700' }], // e.g., Largest heading (H1)
-        'h1': ['3rem', { lineHeight: '1.2', fontWeight: '600' }], // e.g., H1
-        'h2': ['2.25rem', { lineHeight: '1.3', fontWeight: '600' }], // e.g., H2 (36px)
-        'h3': ['1.875rem', { lineHeight: '1.4', fontWeight: '600' }], // e.g., H3 (30px)
-        'h4': ['1.5rem', { lineHeight: '1.5', fontWeight: '600' }], // e.g., H4 (24px)
-        'h5': ['1.25rem', { lineHeight: '1.5', fontWeight: '600' }], // e.g., H5 (20px)
+        'display': ['4rem', { lineHeight: '1.1', fontWeight: '700' }],  // e.g., Largest heading (H1)
+      
+        'h1': ['2.625rem', { lineHeight: '1.2', fontWeight: '600' }],   // e.g., H1 (42px)
+        'h2': ['2.000rem', { lineHeight: '1.3', fontWeight: '600' }],   // e.g., H2 (32px)
+        'h3': ['1.250rem', { lineHeight: '1.4', fontWeight: '600' }],   // e.g., H3 (20px)
         
         // Body text
-        'body': ['1rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Body (16px)
-        'body-sm': ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Small body (14px)
-        
+        'body':     ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Body (14px)
+        'body-sm':  ['0.750rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Small body (12px)
+        'body-xs':  ['0.625rem', { lineHeight: '1.5', fontWeight: '400' }], // e.g., Extra small body (10px)
+       
         // UI elements
-        'button': ['1rem', { lineHeight: '1.5', fontWeight: '600' }], // e.g., Button text (16px)
-        'label': ['0.875rem', { lineHeight: '1.4', fontWeight: '500' }], // e.g., Form labels (14px)
+        'button': ['0.875rem', { lineHeight: '1.5', fontWeight: '600' }], // e.g., Button text (14px)
+        'label': ['0.750rem', { lineHeight: '1.4', fontWeight: '500' }], // e.g., Form labels (12px)
       },
       
       fontWeight: {
