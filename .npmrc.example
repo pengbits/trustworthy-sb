@@ -1,0 +1,17 @@
+# Example .npmrc configuration for private npm registry
+# Copy this file to .npmrc and configure for your registry
+
+# For GitHub Packages (default):
+# @trustworthy:registry=https://npm.pkg.github.com
+# //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+
+# For npm Enterprise or other private registries:
+# @trustworthy:registry=https://your-registry.company.com
+# //your-registry.company.com/:_authToken=${NPM_AUTH_TOKEN}
+
+# Always use public npm for non-scoped packages
+# registry=https://registry.npmjs.org/
+
+# For local development, you can create a .npmrc.local file
+# and source it: source .npmrc.local
+

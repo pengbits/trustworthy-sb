@@ -1,19 +1,53 @@
 {
-  "name": "trustworthy-sb",
+  "name": "@trustworthy/design-system",
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
+  "main": "./dist/trustworthy-ds.cjs.js",
+  "module": "./dist/trustworthy-ds.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/trustworthy-ds.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/trustworthy-ds.cjs.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:lib": "tsc -p tsconfig.lib.json && vite build --config vite.lib.config.ts",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "npm run build:lib"
   },
-  "keywords": [],
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "storybook"
+  ],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Trustworthy Design System - React components and design tokens",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "publishConfig": {
+    "registry": ""
+  },
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

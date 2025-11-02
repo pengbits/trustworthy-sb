@@ -30,6 +30,10 @@ yarn-error.log*
 .env
 .env*.local
 
+# npm config with secrets (keep .npmrc.example for reference)
+.npmrc
+!.npmrc.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

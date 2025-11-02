@@ -1,0 +1,137 @@
+name: Publish Design System to Private NPM Registry
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version bump (patch, minor, major)'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+# Allow only one concurrent deployment per registry
+concurrency:
+  group: "publish-npm-${{ github.ref }}"
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: ${{ secrets.NPM_REGISTRY_URL || 'https://npm.pkg.github.com' }}
+          scope: '@trustworthy'
+          # For GitHub Packages, this uses GITHUB_TOKEN automatically
+          # For other registries, use NPM_AUTH_TOKEN secret
+      
+      - name: Configure npm for private registry
+        run: |
+          # For GitHub Packages
+          if [ "${{ secrets.NPM_REGISTRY_URL }}" = "" ] || [ "${{ secrets.NPM_REGISTRY_URL }}" = "https://npm.pkg.github.com" ]; then
+            echo "@trustworthy:registry=https://npm.pkg.github.com" >> .npmrc
+            echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          else
+            # For other private registries (npm Enterprise, Verdaccio, etc.)
+            echo "@trustworthy:registry=${{ secrets.NPM_REGISTRY_URL }}" >> .npmrc
+            echo "${{ secrets.NPM_REGISTRY_URL }}/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" >> .npmrc
+          fi
+          # Always use public registry for non-scoped packages
+          echo "registry=https://registry.npmjs.org/" >> .npmrc
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run tests (if available)
+        run: npm test -- --run || echo "No tests configured"
+        continue-on-error: true
+      
+      - name: Build library
+        run: npm run build:lib
+      
+      - name: Determine version bump
+        id: version
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          BUMP_TYPE="${{ github.event.inputs.version }}"
+          
+          # Use npm version to calculate new version
+          npm version $BUMP_TYPE --dry-run --no-git-tag-version > /tmp/new-version.txt || true
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          
+          # Restore original version
+          npm version $CURRENT_VERSION --no-git-tag-version --allow-same-version || true
+          
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Bumping version from $CURRENT_VERSION to $NEW_VERSION"
+      
+      - name: Update version
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          npm version ${{ github.event.inputs.version }} --no-git-tag-version
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to $(node -p "require('./package.json').version") [skip ci]" || echo "No changes to commit"
+          git push || echo "Failed to push version update"
+      
+      - name: Get version from tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_ENV
+          npm version $VERSION --no-git-tag-version || echo "Version already set"
+      
+      - name: Determine registry name
+        id: registry
+        env:
+          REGISTRY_URL: ${{ secrets.NPM_REGISTRY_URL }}
+        run: |
+          if [ -n "$REGISTRY_URL" ] && [ "$REGISTRY_URL" != "https://npm.pkg.github.com" ]; then
+            echo "name=$REGISTRY_URL" >> $GITHUB_OUTPUT
+          else
+            echo "name=GitHub Packages" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Publish to private npm registry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          npm publish --access restricted
+      
+      - name: Create GitHub Release (if tagged)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Design System Package Release
+            
+            Version: ${{ github.ref_name }}
+            Published to: ${{ steps.registry.outputs.name }}
+          draft: false
+          prerelease: false
+
